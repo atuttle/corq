@@ -62,9 +62,9 @@
 	corq.prototype.push = function(type, item){
 		Q.push( { data:item, type:type, id:$guid() } );
 		if (_persist){ _persist(Q); }
-			if (debug){
-				console.log('Corq: Item added to queue `%s` ', type, item);
-			}
+		if (debug){
+			console.log('Corq: Item added to queue `%s` ', type, item);
+		}
 		return this;
 	};
 
