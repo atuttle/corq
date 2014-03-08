@@ -1,0 +1,27 @@
+{
+  "name": "corq",
+  "version": "0.0.1",
+  "description": "A trustworthy item-processing queue. Never lose data to an error again.",
+  "main": "corq.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/atuttle/corq.git"
+  },
+  "keywords": [
+    "sync",
+    "async",
+    "cork",
+    "corq",
+    "queue",
+    "processing"
+  ],
+  "author": "Adam Tuttle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atuttle/corq/issues"
+  },
+  "homepage": "https://github.com/atuttle/corq"
+}
