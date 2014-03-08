@@ -174,11 +174,11 @@
 	function $delete(itemId){
 		for (var i = 0; i < Q.length; i++){
 			if (Q[i].id === itemId) {
-				Q.splice(i,1);
-				if (_persist){ _persist(Q); }
 				if (debug){
 					console.log('Corq: Item deleted from queue `%s` ', Q[i].type, Q[i].data);
 				}
+				Q.splice(i,1);
+				if (_persist){ _persist(Q); }
 				break;
 			}
 		}
