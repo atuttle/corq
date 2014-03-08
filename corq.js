@@ -65,6 +65,10 @@
 		if (debug){
 			console.log('Corq: Item added to queue `%s` ', type, item);
 		}
+		if (!this.running){
+			this.running = true;
+			$next();
+		}
 		return this;
 	};
 
@@ -102,10 +106,10 @@
 		if (Q.length){
 			$item(Q[0]);
 		}else{
+			that.running = false;
 			if (debug){
-				console.log('Corq: No items to process, sleeping for %sms', that.frequency);
+				console.log('Corq: No items to process, shutting down the queue');
 			}
-			setTimeout(function(){ $next(); }, that.frequency);
 		}
 	}
 
