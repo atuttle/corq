@@ -32,31 +32,37 @@
 		this.delay = false;
 		this.delayLength = msDelay || 1000 * 30; //default to 30sec
 		that = this;
+		return this;
 	};
 
 	//optional persistence implementation -- use it however you like!
 	corq.prototype.persistVia = function(persistCallback){
 		_persist = persistCallback;
+		return this;
 	};
 	//optional data loading implementation -- asynchronous because that's the lowest common denominator
 	corq.prototype.loadVia = function(loadCallback){
 		loadCallback(function(data){ Q = data; });
+		return this;
 	};
 
 	//add an item to the queue
 	corq.prototype.push = function(type, item){
 		Q.push( { data:item, type:type, id:$guid() } );
 		if (_persist){ _persist(Q); }
+		return this;
 	};
 
 	//start the queue
 	corq.prototype.start = function(){
 		this.running = true;
 		$next();
+		return this;
 	};
 	//stop the queue
 	corq.prototype.stop = function(){
 		this.running = false;
+		return this;
 	};
 
 	//register item handlers
@@ -65,6 +71,7 @@
 			throw "You may only have one handler per item type. You already have one for `" + typeName + "`";
 		}
 		callbacks[typeName] = callback;
+		return this;
 	};
 
 	function $next(){

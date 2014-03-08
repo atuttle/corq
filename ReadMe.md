@@ -61,7 +61,18 @@ Once your handlers are registered, start the queue.
 
 Some time later, an item is thrown in the queue. It could even be 100 items - it doesn't matter.
 
-	queue.queue('foo', { foo: 'bar', fizz: 'buzz' });
+	queue.push('foo', { foo: 'bar', fizz: 'buzz' });
+
+### Chaining
+
+All public methods are chainable:
+
+	var q = new Corq()
+				.on('foo', function(){ /* ... */ })
+				.on('bar', function(){ /* ... */ })
+				.start()
+				.push('foo', { /* ... */ })
+				.push('bar', { /* ... */ })
 
 ## Persistence
 
