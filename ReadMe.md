@@ -68,7 +68,6 @@ All public methods are chainable:
 	var q = new Corq()
 				.on('foo', function(){ /* ... */ })
 				.on('bar', function(){ /* ... */ })
-				.start()
 				.push('foo', { /* ... */ })
 				.push('bar', { /* ... */ })
 
