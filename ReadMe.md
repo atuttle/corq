@@ -55,13 +55,11 @@ Now register item-type handlers:
 		}
 	});
 
-Once your handlers are registered, start the queue.
-
-	queue.start();
-
 Some time later, an item is thrown in the queue. It could even be 100 items - it doesn't matter.
 
 	queue.push('foo', { foo: 'bar', fizz: 'buzz' });
+
+The queue internal timers start when you add an item to the queue, and automatically shut down when the queue is empty.
 
 ### Chaining
 

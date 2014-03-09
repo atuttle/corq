@@ -72,15 +72,6 @@
 		return this;
 	};
 
-	//start the queue
-	corq.prototype.start = function(){
-		if (debug){
-			console.log('Corq: Queue started');
-		}
-		this.running = true;
-		$next();
-		return this;
-	};
 	//stop the queue
 	corq.prototype.stop = function(){
 		this.running = false;
