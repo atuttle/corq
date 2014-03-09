@@ -33,9 +33,7 @@
 		this.delayLength = msDelay || 1000 * 30; //default to 30sec
 		that = this;
 		debug = chatty || false;
-		if (debug){
-			console.log('Corq initialized. Freq: %sms, Cooldown: %sms', this.frequency, this.delayLength);
-		}
+		$debug('Corq initialized. Freq: ' + this.frequency + 'ms, Cooldown: ' + this.delayLength + 'ms');
 		return this;
 	};
 
@@ -46,13 +44,11 @@
 	};
 	//optional data loading implementation -- asynchronous because that's the lowest common denominator
 	corq.prototype.loadVia = function(loadCallback){
-		if (debug){
-			console.log('Corq: Loading data...');
-		}
+		debug('Corq: Loading data...');
 		loadCallback(function(data){
 			Q = data;
-			if (debug){
-				console.log('Corq: Data loaded: ', Q);
+			$debug('Corq: Data loaded');
+			$debug(Q);
 			}
 		});
 		return this;
@@ -62,9 +58,8 @@
 	corq.prototype.push = function(type, item){
 		Q.push( { data:item, type:type, id:$guid() } );
 		if (_persist){ _persist(Q); }
-		if (debug){
-			console.log('Corq: Item added to queue `%s` ', type, item);
-		}
+		$debug('Corq: Item added to queue `' + type + '`');
+		$debug(item);
 		if (!this.running){
 			this.running = true;
 			$next();
@@ -75,9 +70,7 @@
 	//stop the queue
 	corq.prototype.stop = function(){
 		this.running = false;
-		if (debug){
-			console.log('Corq: Queue stopped');
-		}
+		$debug('Corq: Queue stopped');
 		return this;
 	};
 
@@ -87,9 +80,7 @@
 			throw "You may only have one handler per item type. You already have one for `" + typeName + "`";
 		}
 		callbacks[typeName] = callback;
-		if (debug){
-			console.log('Corq: Handler registered for `%s`', typeName);
-		}
+		$debug('Corq: Handler registered for `' + typeName + '`');
 		return this;
 	};
 
@@ -98,9 +89,7 @@
 			$item(Q[0]);
 		}else{
 			that.running = false;
-			if (debug){
-				console.log('Corq: No items to process, shutting down the queue');
-			}
+			$debug('Corq: No items to process, shutting down the queue');
 		}
 	}
 
@@ -110,9 +99,8 @@
 		if (!callbacks[typeName]){
 			throw "Item handler not found for items of type `" + typeName + "`";
 		}
-		if (debug){
-			console.log('Corq: Calling handler for item `%s` ', typeName, item.data);
-		}
+		$debug('Corq: Calling handler for item `' + typeName + '`');
+		$debug(item.data);
 		var _next = function(){
 			var freq = (that.delay) ? that.delayLength : that.frequency;
 			setTimeout(function(){
@@ -120,25 +108,22 @@
 			}, freq);
 		};
 		var _success = function(){
-			if (debug){
-				console.log('Corq: Item processing SUCCESS `%s` ', typeName, item.data);
-			}
+			$debug('Corq: Item processing SUCCESS `' + typeName + '` ');
+			$debug(item.data);
 			$success(item);
 			_next();
 		};
 		var _fail = function(){
-			if (debug){
-				console.log('Corq: Item processing FAILURE `%s` ', typeName, item.data);
-			}
+			$debug('Corq: Item processing FAILURE `' + typeName + '` ');
+			$debug(item.data);
 			$fail(item);
 			_next();
 		};
 		try {
 			callbacks[typeName](item.data, _success, _fail);
 		}catch(e){
-			if (debug){
-				console.log('Corq: Error thrown by item processing function `%s` ', typeName, item.data);
-			}
+			$debug('Corq: Error thrown by item processing function `' + typeName + '` ');
+			$debug(item.data);
 			_fail();
 			throw e;
 		}
@@ -154,9 +139,7 @@
 		consecutiveFails++;
 		$requeue(item);
 		if (consecutiveFails >= Q.length){
-			if (debug){
-				console.log('Corq: Queue is all failures, initiating cooldown (%sms)', that.delayLength);
-			}
+			$debug('Corq: Queue is all failures, initiating cooldown (' + that.delayLength + 'ms)');
 			that.delay = true;
 		}
 	}
@@ -169,9 +152,8 @@
 	function $delete(itemId){
 		for (var i = 0; i < Q.length; i++){
 			if (Q[i].id === itemId) {
-				if (debug){
-					console.log('Corq: Item deleted from queue `%s` ', Q[i].type, Q[i].data);
-				}
+				$debug('Corq: Item deleted from queue `' + Q[i].type + '` ');
+				$debug(Q[i].data);
 				Q.splice(i,1);
 				if (_persist){ _persist(Q); }
 				break;
@@ -218,6 +200,12 @@
 		}
 
 		throw new Error("Unable to copy obj! Its type isn't supported.");
+	}
+
+	function $debug(msg){
+		if (debug){
+			console.log(msg);
+		}
 	}
 
 	return corq;
