@@ -49,7 +49,6 @@
 			Q = data;
 			$debug('Corq: Data loaded');
 			$debug(Q);
-			}
 		});
 		return this;
 	};
