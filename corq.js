@@ -44,7 +44,7 @@
 	};
 	//optional data loading implementation -- asynchronous because that's the lowest common denominator
 	corq.prototype.loadVia = function(loadCallback){
-		debug('Corq: Loading data...');
+		$debug('Corq: Loading data...');
 		loadCallback(function(data){
 			Q = data;
 			$debug('Corq: Data loaded');
