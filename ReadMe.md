@@ -61,9 +61,13 @@ Some time later, an item is thrown in the queue. It could even be 100 items - it
 
 The queue internal timers start when you add an item to the queue, and automatically shut down when the queue is empty.
 
+If you want the current length of the queue, simly call `.length()`:
+
+	console.log( 'current queue length: %s', queue.length() );
+
 ### Chaining
 
-All public methods are chainable:
+All public methods (except `length()`) are chainable:
 
 	var q = new Corq()
 				.on('foo', function(){ /* ... */ })

@@ -83,6 +83,10 @@
 		return this;
 	};
 
+	corq.prototype.length = function(){
+		return Q.length;
+	}
+
 	function $next(){
 		if (Q.length){
 			$item(Q[0]);
