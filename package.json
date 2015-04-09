@@ -1,6 +1,6 @@
 {
   "name": "corq",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "A trustworthy item-processing queue. Never lose data to an error again.",
   "main": "corq.js",
   "scripts": {
