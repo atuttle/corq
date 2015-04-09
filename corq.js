@@ -25,7 +25,7 @@
 	var debug,that;
 
 	var corq = function(msFrequency, msDelay, chatty){
-		this.version = '0.0.1';
+		this.version = '0.2.1';
 		this.queue = Q;
 		this.running = false;
 		this.frequency = msFrequency || 1000 * 5; //default to 5sec
