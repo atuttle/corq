@@ -90,6 +90,8 @@ Corq can optionally persist the queue whenever its data changes.
 
 Data is loaded immediately when you run `loadVia()`. **Do not return the data, pass it to the supplied callback.**
 
+When the loaded data is not empty, the processing queue is _not_ automatically started. You may want to check the queue length with `q.length()` and then start it manually with `q.start()`.
+
 ## Persistence: There be dragons here
 
 Be mindful of your persistence and processing-delay settings. Data will be persisted every time the queue content changes. This includes: queueing new items, success (removing the item from the queue), and failure (requeueing the item).
