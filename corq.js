@@ -59,10 +59,7 @@
 		if (_persist){ _persist(Q); }
 		$debug('Corq: Item added to queue `' + type + '`');
 		$debug(item);
-		if (!this.running){
-			this.running = true;
-			$next();
-		}
+		this.start();
 		return this;
 	};
 
@@ -71,6 +68,13 @@
 		this.running = false;
 		$debug('Corq: Queue stopped');
 		return this;
+	};
+
+	corq.prototype.start = function(){
+		if (!this.running){
+			this.running = true;
+			$next();
+		}
 	};
 
 	//register item handlers
