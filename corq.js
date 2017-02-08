@@ -47,11 +47,12 @@
 	};
 	//optional data loading implementation -- asynchronous because that's the lowest common denominator
 	corq.prototype.loadVia = function(loadCallback){
+        corq = this
 		$debug(this,'Corq: Loading data...');
 		loadCallback(function(data){
-			this.queue = data;
-			$debug('Corq: Data loaded');
-			$debug(this.queue);
+			corq.queue = data;
+			$debug(corq,'Corq: Data loaded');
+			$debug(corq,corq.queue);
 		});
 		return this;
 	};
@@ -212,7 +213,7 @@
 		throw new Error("Unable to copy obj! Its type isn't supported.");
 	}
 
-	function $debug(this, corq,msg){
+	function $debug(corq, msg){
 		if (corq.debug){
 			console.log(msg);
 		}
