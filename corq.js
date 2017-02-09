@@ -142,14 +142,14 @@
 
 	function $success(corq,item){
 		corq.delay = false;
-		consecutiveFails = 0;
+		corq.consecutiveFails = 0;
 		$delete(corq,item.id);
 	}
 
 	function $fail(corq,item){
-		consecutiveFails++;
+		corq.consecutiveFails++;
 		$requeue(corq,item);
-		if (consecutiveFails >= corq.queue.length){
+		if (corq.consecutiveFails >= corq.queue.length){
 			$debug(corq, 'Corq: Queue is all failures, initiating cooldown (' + corq.delayLength + 'ms)');
 			corq.delay = true;
 		}
