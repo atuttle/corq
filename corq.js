@@ -17,13 +17,6 @@
 //below this line: actual Corq code.
 }(function(){
 
-    // var Q = []; //the queue
-    // var _persist = null;
-    // var _load = null;
-    // var callbacks = {};
-    // var consecutiveFails = 0;
-    // var debug,that;
-
 	var corq = function(msFrequency, msDelay, chatty){
 		this.version = '0.2.2';
 		this.queue = [];
