@@ -1,4 +1,4 @@
-const Corq = require( '../corq' );
+const Corq = require( './corq' );
 
 test( 'persistVia called when an item is added to the queue', () => {
 	const queue = new Corq();
