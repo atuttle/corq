@@ -21,13 +21,13 @@
 		this.version = '0.2.2';
 		this.queue = [];
 		this.running = false;
-        this.callbacks = {};
+		this.callbacks = {};
 		this.frequency = msFrequency || 1000 * 5; //default to 5sec
 		this.delay = false;
 		this.delayLength = msDelay || 1000 * 30; //default to 30sec
-        this.persist = null;
-        this.load = null;
-        this.consecutiveFails = 0;
+		this.persist = null;
+		this.load = null;
+		this.consecutiveFails = 0;
 		this.debug = chatty || false;
 		$debug(this,'Corq initialized. Freq: ' + this.frequency + 'ms, Cooldown: ' + this.delayLength + 'ms');
 		return this;
