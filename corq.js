@@ -74,6 +74,10 @@
 		}
 	};
 
+	corq.prototype.isRunning = function(){
+		return this.running;
+	}
+
 	//register item handlers
 	corq.prototype.on = function(typeName, callback){
 		if (this.callbacks[typeName]){
