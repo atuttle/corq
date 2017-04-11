@@ -4,7 +4,8 @@
   "description": "A trustworthy item-processing queue. Never lose data to an error again.",
   "main": "corq.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/atuttle/corq/issues"
   },
-  "homepage": "https://github.com/atuttle/corq"
+  "homepage": "https://github.com/atuttle/corq",
+  "devDependencies": {
+    "jest-cli": "^19.0.2"
+  }
 }
